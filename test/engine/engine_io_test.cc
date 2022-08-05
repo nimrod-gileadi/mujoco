@@ -186,8 +186,8 @@ TEST_F(EngineIoTest, MakeDataReturnsNullOnFailure) {
   mjModel* model = LoadModelFromString(xml, error.data(), error.size());
   ASSERT_THAT(model, NotNull()) << "Failed to load model: " << error.data();
 
-  // trigger overflow intentionally
-  model->nbody = INT_MAX;
+  // set an invalid value intentionally
+  model->nbody = -1;
   static bool warning = false;
   warning = false;
   mju_user_warning = [](const char* error) {
